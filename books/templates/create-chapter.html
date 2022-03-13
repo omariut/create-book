@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h1> বইয়ের নামঃ {{book}}</h1>
+
+<form action="{%url 'create-chapter-of-book' view.kwargs.book_id %}" method = 'POST'>
+    {% csrf_token %}
+    {{form}}
+
+    <button type="submit">Save</button>
+</form>
+
+{% endblock contents %}

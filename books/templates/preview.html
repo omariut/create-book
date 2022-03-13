@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block contents %}
+
+<title>{{book.title}}</title>
+
+<h1 style="text-align: center;"> {{book.title}}  </h1>
+
+
+
+
+<ul  style="list-style-type:none;">
+    {% for chapter in book.chapter_set.all %}
+    <li>
+        <h2 style="text-align: center;">{{chapter.serial}}. <span> </span> {{chapter.title}}</h2>
+        {% for section in chapter.section_set.all %}
+        <li>
+            <h3>{{section.serial}} . <span> </span> {{section.title}}</h3>
+            <li><p > &ensp;  &ensp; {{section.text_content}} </p>
+                <img src="{{section.image}}" alt="">
+            </li>
+            
+        </li>
+        
+        {% endfor %}
+        <li>   <a href="{%url 'create-section-of-chapter' chapter.id %}"> Add Section </a> </li>
+      
+        
+    </li>
+    
+    {% endfor %}
+    <li> <a href="{%url 'create-chapter-of-book' book.id %}">Add Chapter</a></li> 
+    
+</ul>
+{% endblock contents %}

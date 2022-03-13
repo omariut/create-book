@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+<h1> বইয়ের নামঃ {{book}}</h1>
+<h2> অধ্যায়ঃ {{chapter.title}}</h2>
+<h3> Section </h3>
+<form action="{%url 'create-section-of-chapter' view.kwargs.chapter_id %}" method = 'POST'>
+    {% csrf_token %}
+    {% for item in  form%}
+    <br>
+    {{item.name}}
+    {{item}}
+    <br>
+    {% endfor %}
+    
+
+    <button type="submit">Save</button>
+</form>
+
+
+{% endblock contents %}
